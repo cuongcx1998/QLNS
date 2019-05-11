@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "eng">
 	<head>
-		<title>Quản lý nhân sự</title>
+		<title>QUẢN LÝ NHÂN SỰ</title>
 		<meta charset = "utf-8" />
 		<link rel = "shortcut icon" href = "">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,32 +24,34 @@
 		</style>
 	</head>
 <body>
-	<div class = "navbar navbar-default" style="background-color:#9494b5;">
-		<img src = "" style = "float:center;" height = "60px" /><span class = "navbar-brand">Quản lý nhân sự</span>
+	<div class = "navbar navbar-default" style="background-color:#f44336;">
+		<img src = "" style = "float:left;" height = "55px" /><span class = "navbar-brand">Quản lý nhân sự</span>
 	</div>
 	<div id = "top" class = "login">
 		<div class = "panel panel-primary">
 			<div class = "panel-heading">
-				<center><h1 class = "panel-title">Đăng nhập </h1></center>
+				<center><h1 class = "panel-title">Administrator</h1></center>
 			</div>
 			<div class = "panel-body">
 				<form enctype = "multipart/form-data" action = "login_query.php" role = "form" method = "POST">
 					<div class = "form-group">
-						<label for = "username">Tên tài khoản</label>
-						<input class = "form-control" name = "admin_user" placeholder = "Tên tài khoản" type = "text" required = "required" >
+						<label for = "username">Username</label>
+						<input class = "form-control" name = "admin_user" placeholder = "Username" type = "text" required = "required" >
 					</div>
 					<div class = "form-group">
-						<label for = "password">Mật khẩu</label>
-						<input class = "form-control" name = "admin_pass" placeholder = "Mật khẩu" type = "password" required = "required" >
+						<label for = "password">Password</label>
+						<input class = "form-control" name = "admin_pass" placeholder = "Password" type = "password" required = "required" >
 					</div>
 					<div class = "form-group">
-						<button class = "btn btn-block btn-success" name = "login"><span class = "glyphicon glyphicon-log-in"></span> Đăng nhập</button>
+						<button class = "btn btn-block btn-success" name = "login"><span class = "glyphicon glyphicon-log-in"></span> Login</button>
 					</div>
 				</form>
 			</div>
 		</div>	
 	</div>
-	
+	<div id = "footer">
+		<label class = "footer-title">&copy; Copyright CHMSC PERSONNEL PROFILING 2017</label>
+	</div>
 </body>
 <?php
 	include("script.php");

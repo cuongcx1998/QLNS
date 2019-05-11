@@ -77,11 +77,11 @@
     <!-- #END# Overlay For Sidebars -->
     <!-- Top Bar -->
     <nav class="navbar">
-        <div class="container-fluid" style="background-color:#98ad1e;">
+        <div class="container-fluid" style="background-color:#f44336;">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="home.php" style="color: #fff;">Hồ sơ nhân sự</a>
+                <a class="navbar-brand" href="home.php" style="color: #fff;">Hồ sơ cá nhân</a>
                 <ul class = "nav navbar-right"> 
                 <li class = "dropdown">
                     <a class = "user dropdown-toggle" data-toggle = "dropdown" href = "#" style="color: #fff;">
@@ -90,7 +90,7 @@
                     </a>
                 <ul class = "dropdown-menu">
                     <li>
-                       <a class = "me" href = "logout.php" onclick="if(confirm('Logging out, Thank you and see you soon Admin!') == 0){return false;}"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
+                        <a class = "me" href = "logout.php" onclick="if(confirm('Logging out, Thank you and see you soon Admin!') == 0){return false;}"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
                     </li>
                 </ul>
                 </li>
@@ -105,7 +105,7 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">Bảng điều khiển</li>
+                    <li class="header">Tùy Chọn</li>
                     <li>
                         <a href="home.php">
                             <i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Trang chủ
@@ -113,17 +113,95 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="glyphicon glyphicon-th-large"></i>&nbsp;&nbsp;Cập nhật thông tin
+                            <i class="glyphicon glyphicon-th-large"></i>&nbsp;&nbsp;Quản lý
                         </a>
-                        
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="all_personnel.php">Nhân sự</a>
+                            </li>
+                            
+                            <li>
+                                <a href="gass_rank_table.php">Chức danh</a>
+                            </li>
+                            <li>
+                                <a href="rank_table.php">Bằng cấp</a>
+                            </li>
+                            <li>
+                                <a href="department_table.php">Trường</a>
+                            </li>
+                            <li>
+                                <a href="file_table.php">
+                                    Files
+                                </a>
+                            </li>
+                        </ul> 
                     </li>                   
-                   
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             
-                            <i class="glyphicon glyphicon-print"></i>&nbsp;&nbsp;Báo cáo
+                            <i class="glyphicon glyphicon-education"></i>&nbsp;&nbsp;Bộ môn
                         </a>
-                        
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="all_campus.php">Tất cả bộ môn</a>
+                            </li>
+                            <li>
+                                <a href="talisay_campus.php">Công nghệ phần mềm</a>
+                            </li>
+                            <li>
+                                <a href="fortune_towne_campus.php">Hệ thống thông tin</a>
+                            </li>
+                            <li>
+                                <a href="alijis_campus.php">Khoa học máy tính</a>
+                            </li>
+                            <li>
+                                <a href="binalbagan_campus.php">Kĩ thuật máy tính</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            
+                            <i class="glyphicon glyphicon-print"></i>&nbsp;&nbsp;Reports
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="individual_report.php">Individual Reports</a>
+                            </li>
+                            <li>
+                                <a href="retirement_table.php">Retirement</a>
+                            </li>
+                            <li>
+                                <a href="faculty_profile.php">Faculty Profile by Unit</a>
+                            </li>
+                            <li>
+                                <a href="educational_qualification.php">Educational Qualifications</a>
+                            </li>
+                            <li>
+                                <a href="faculty_per_campus.php">Number of Faculty / Campus</a>
+                            </li>
+                            <li>
+                                <a href="Faculty_profile_by_degree.php">Faculty Profile by Degree</a>
+                            </li>
+                            <li>
+                                <a href="faculty_profile_by_academic_rank.php">Faculty Profile by Academic Rank</a>
+                            </li>
+                            <li>
+                                <a href="breakdown_of_faculty_profile.php">Breakdown Of Faculty</a>
+                            </li>
+                            <li>
+                                <a href="gass_profile_by_degree.php">Gass Profile By Degree</a>
+                            </li>
+                            <li>
+                                <a href="gass_per_campus.php">Number of Gass Personnel per Campus</a>
+                            </li>
+                            <li>
+                                <a href="job_order_per_campus.php">Number of Job Order Personnel per Campus</a>
+                            </li>
+                            <li>
+                                <a href="gass_personnel.php">GASS Personnel with Completed Master's and Doctoral Degree</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul><br><br><br>
                 <div class="dtime">
@@ -136,11 +214,34 @@
                         ?>
                     </div>
                  </div>
-                
+                <div class="notif">
+                <span><i>HAVE A GOOD WORKING DAY</i></span><br><br>
+                <div class="celeb">
                 <?php
-                   
+                  include("connect.php"); 
                     $date = date('-m-d');
-                   
+                    $bquery = $con->prepare("SELECT * FROM tbl_personnel WHERE per_date_of_birth LIKE '%$date%' ");
+                    $bquery->execute();
+                    while($row = $bquery->fetch()) {
+                        $bday = $row["per_date_of_birth"];
+                        $date = new DateTime($bday);
+                        $now = new DateTime();
+                        $difference = $date->diff($now)->format('%y');
+                        $gender = $row['per_gender'];
+
+                    if ($gender == 'Male') { ?>
+                    
+                        <span>Age: <?php echo $difference; ?></span><br>
+                        <span">Name: Mr. <?php echo $row['per_firstname']. " " . $row['per_middlename']. ". " . $row['per_lastname']; ?></span><br>
+                        <span>Contact No.: <?php echo $row['per_contact_no']; ?></span><br>
+                        <span>Campus: <?php echo $row['per_campus']; ?></span><br><br>
+                   <?php } else { ?>
+                        <span>Age: <?php echo $difference; ?></span><br>
+                        <span>Name: Ms/Mrs. <?php echo $row['per_firstname']. " " . $row['per_middlename']. ". " . $row['per_lastname']; ?></span><br>
+                        <span>Contact No.: <?php echo $row['per_contact_no']; ?></span><br>
+                        <span>Campus: <?php echo $row['per_campus']; ?></span><br>
+                  <?php  }
+                  }
                 ?>
                     </div>
                 </div>
@@ -149,7 +250,9 @@
         </aside>
     </section>
 
-            
+            <?php include("add_position_modal.php"); ?>
+            <?php include("add_rank_modal.php"); ?>
+            <?php include("add_department_modal.php"); ?>
 
 
 
